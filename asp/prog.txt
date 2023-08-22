@@ -1,55 +1,110 @@
-%#show artist_of/2.
-%#show member_of/2.
-#show music_genre/2.
+% band and members
 
-% Small Music KB Example
-% n Let’s build a small KB in the music domain
-% n Let’s define the following unary predicates
-% ¨artist(X): X is an artist
-% ¨band(X): X is a band
-% ¨singer(X): X is a singer
-% ¨musician(X): X is a musician
-% ¨music_work(X): X is a music work (a single,
-% an LP)
-% ¨genre(X): X is a genre 
+singer(james_brown). 
+band(jbs).
+musician(maceo_parker).
+member_of(james_brown,jbs).
+member_of(fred_wesley,jbs).
+member_of(maceo_parker,jbs).
+member_of(bootsy_collins,jbs).
+member_of(bobby_bird,jbs).
+
+% singer
+
+singer(anderson_paak).
+musician(anderson_paak).
+
+% songs - albums
+music_work(the_grunt).
+music_work(escapeism).
+
+% artists of songs
+artist_of(jbs,the_grunt).
+artist_of(jbs,escapeism).
+
+artist_of(anderson_paak,milk_n_honey).
+artist_of(anderson_paak,tints).
+
+% genres
+% genre(black_music).
+% genre(funk).
+% genre(jazz_funk).
+% genre(raw_funk).
+% genre(rap).
+% genre(trap).
+
+% subgenres
+subgenre(funk,black_music).
+subgenre(rap,black_music).
+subgenre(raw_funk,funk).
+subgenre(jazz_funk,funk).
+subgenre(trap,rap).
+
+% music works and genre
+music_genre(the_grunt,raw_funk).
+music_genre(escapeism,jazz_funk).
+music_genre(milk_n_honey,trap).
+music_genre(tints,funk).
+music_genre(tints,rap).
 
 
-% Let’s build a small KB in the music domain
-% n Let’s define the following binary predicates
-% ¨ artist_of(X,Y): X is the artist of the Y music work
-% ¨ member_of(X,Y): X is member of the band Y
-% ¨ music_genre(X,Y): Y is the genre of the music
-% work X
-% ¨ subgenre(X,Y): X is subgenre of Y
-% ¨ plays_genre(X,Y): X plays music of genre Y
+% band and members from member_of
+music_work(X) :- artist_of(_,X).
 
-
-
-% this is an example ONLY for a fast generation of facts
-artist(1..10). band(1..3). singer(1..10). musician(1..10). music_work(1..20). genre(1..5). % facts
-artist_of(X,Y) | noArtist_of(X,Y) :- artist(X), music_work(Y). % guess
-
-% check
-:- artist(X), #count{Y,X : artist_of(X,Y)} < 1. % an artist can not have less than 1 music work
-:- music_work(Y), #count{X,Y : artist_of(X,Y)} > 2. % a music work can not have more than 2 (only for example) artists
+% infer genre(X) from relations  
+genre(X) :- subgenre(X,_). % X is a genre if it is (subgenre of something or the supergenre of something)
+genre(X) :- subgenre(_,X).
+genre(X) :- music_genre(_,X). % X is a genre if it is the music genre of something
 
 
 
 
-member_of(X, Y) | noMmember_of(X,Y) :- artist(X), band(Y). %guess
-%check
-:- artist(X), #count{Y,X : member_of(X,Y)} > 1. % an artist can have (for example) only a single band.
-% the size of a band should be between 3 and 5 members.
-:- band(Y), #count{X,Y : member_of(X,Y)} = K, K>5. 
-:- band(Y), #count{X,Y : member_of(X,Y)} = K, K<2.
+% inheritance with unary predicates  
+
+% if X is a singer X is a musician and an artist
+artist(X) :- singer(X).
+musician(X) :- singer(X).
+
+% X is an artist if X is a singer or a musician or a band
+artist(X) :- musician(X).
+artist(X) :- singer(X).
+artist(X) :- band(X).
+
+
+% transitive subgenre  
+transitive_subgenre(X,Y) :- subgenre(X,Y).
+transitive_subgenre(X,Y) :- transitive_subgenre(X,Z), subgenre(Z,Y). % the same  :- transitive_subgenre(X,Z), transitive_subgenre(Z,Y).
+transitive_subgenre(X,X) :- genre(X). 
 
 
 
-%guess
-music_genre(X,Y) | noMusic_genre(X,Y) :- music_work(X), genre(Y).
-%check
-:- music_work(X), #count{Y,X : music_genre(X,Y)} < 1. % a music work should have at least one genre
-:- music_work(X), #count{Y,X : music_genre(X,Y)} > 2. % a music work should have at most 2 genres
-% optimize
-%:~ genre(Y), #count{X,Y : music_genre(X,Y)} = K. [K@1, Y, K] % avoid to use the same genre for all music works
+% inverse relations
+recorded_by(X,Y) :- artist_of(Y,X).
 
+% infer artists’ genre
+play_genre(X,Y) :- artist_of(X,Z1), music_genre(Z1,Z2), transitive_subgenre(Z2,Y).
+
+
+% 1----------------------------
+% Add two more branches to the subgenre taxonomy using at least:
+% o One high-level genre of choice (same level as black music)
+% o Two middle-level genre of choice (subgenre of the previous genre)
+% o Four low-level genre of choice (subgenres of the previous genres)
+
+genre(1).
+m_subgenre(2,1).
+m_subgenre(3,1).
+l_subgenre(4,2).
+l_subgenre(5,2).
+l_subgenre(6,3).
+l_subgenre(7,3).
+
+
+% or 
+genre(1..5)
+m_subgenre(X,Y) :- genre(X,Z), genre(Z,Y).
+l_subgenre(X,Y) :- m_subgenre(X,Z), m_subgenre(Z,Y).
+
+
+% Add artists and music works in such a way that each low-level subgenre is associated at least at one music work.
+artist(1..5).
