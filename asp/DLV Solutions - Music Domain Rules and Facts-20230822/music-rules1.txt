@@ -1,0 +1,8 @@
+% band and members from member_of
+music_work(X) :- artist_of(_,X).
+
+
+
+
+
+

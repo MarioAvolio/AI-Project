@@ -1,0 +1,55 @@
+%#show artist_of/2.
+%#show member_of/2.
+#show music_genre/2.
+
+% Small Music KB Example
+% n Let’s build a small KB in the music domain
+% n Let’s define the following unary predicates
+% ¨artist(X): X is an artist
+% ¨band(X): X is a band
+% ¨singer(X): X is a singer
+% ¨musician(X): X is a musician
+% ¨music_work(X): X is a music work (a single,
+% an LP)
+% ¨genre(X): X is a genre 
+
+
+% Let’s build a small KB in the music domain
+% n Let’s define the following binary predicates
+% ¨ artist_of(X,Y): X is the artist of the Y music work
+% ¨ member_of(X,Y): X is member of the band Y
+% ¨ music_genre(X,Y): Y is the genre of the music
+% work X
+% ¨ subgenre(X,Y): X is subgenre of Y
+% ¨ plays_genre(X,Y): X plays music of genre Y
+
+
+
+% this is an example ONLY for a fast generation of facts
+artist(1..10). band(1..3). singer(1..10). musician(1..10). music_work(1..20). genre(1..5). % facts
+artist_of(X,Y) | noArtist_of(X,Y) :- artist(X), music_work(Y). % guess
+
+% check
+:- artist(X), #count{Y,X : artist_of(X,Y)} < 1. % an artist can not have less than 1 music work
+:- music_work(Y), #count{X,Y : artist_of(X,Y)} > 2. % a music work can not have more than 2 (only for example) artists
+
+
+
+
+member_of(X, Y) | noMmember_of(X,Y) :- artist(X), band(Y). %guess
+%check
+:- artist(X), #count{Y,X : member_of(X,Y)} > 1. % an artist can have (for example) only a single band.
+% the size of a band should be between 3 and 5 members.
+:- band(Y), #count{X,Y : member_of(X,Y)} = K, K>5. 
+:- band(Y), #count{X,Y : member_of(X,Y)} = K, K<2.
+
+
+
+%guess
+music_genre(X,Y) | noMusic_genre(X,Y) :- music_work(X), genre(Y).
+%check
+:- music_work(X), #count{Y,X : music_genre(X,Y)} < 1. % a music work should have at least one genre
+:- music_work(X), #count{Y,X : music_genre(X,Y)} > 2. % a music work should have at most 2 genres
+% optimize
+%:~ genre(Y), #count{X,Y : music_genre(X,Y)} = K. [K@1, Y, K] % avoid to use the same genre for all music works
+

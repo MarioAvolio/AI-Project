@@ -1,0 +1,64 @@
+%%% - definite logic programs
+
+
+% band and members from member_of
+music_work(X) :- artist_of(_,X).
+
+% infer genre(X) from relations  
+genre(X) :- subgenre(X,_).
+genre(X) :- subgenre(_,X).
+genre(X) :- music_genre(_,X).
+
+% inheritance with unary predicates   
+artist(X) :- musician(X).
+artist(X) :- singer(X).
+artist(X) :- band(X).
+
+%% counterintuitive rule to test conjunction in the rule head - to be commented  
+% artist(X) :- singer(X).
+% musician(X) :- singer(X).
+
+% transitive subgenre  
+transitive_subgenre(X,Y) :- subgenre(X,Y).
+transitive_subgenre(X,Y) :- transitive_subgenre(X,Z), subgenre(Z,Y). 
+transitive_subgenre(X,X) :- genre(X). 
+
+% inverse relations
+recorded_by(X,Y) :- artist_of(Y,X).
+
+% infer artists’ genre
+play_genre(X,Y) :- artist_of(X,Z1), music_genre(Z1,Z2), transitive_subgenre(Z2,Y).
+
+%%% - disjunctive logic programs
+
+
+singer(X) v musician(X) v band(X) :- artist(X).
+
+
+%%% - logic programs with NAF
+
+%%%%% If a music work is not associated with any genre, it is pop 
+
+% the following rule looks like a good candidate to infer the pop music genre by default if no music genre is specified; however, it does not behave as expected: it make us infer that pop is a genre of all works; in fact we can interpret the rule as follows: if there is a music genre not associated with a music work X, then the music genre of X is pop (but for every work X there exists some genre it is not associated with X)  
+
+% music_genre(X,pop) :- not music_genre(X,Y), music_work(X), genre(Y).
+
+% we therefore specify that every work that is not associated with some music genre different from pop. To do so we need to define 1) other than pop as a unary predicate and 2) the relation existing between two genres that are different.    
+
+% in order to debug the program we can query the predicates in the head of the rule, i.e., different_genre(X,Y)? and other_than_pop(X)?
+
+music_genre(X,pop) :- not other_than_pop(X), music_work(X).
+
+other_than_pop(X) :- music_genre(X,Y), different_genre(Y,pop), music_work(X), genre(Y).
+
+different_genre(X,Y) :- not equal_genre(X,Y), genre(X), genre(Y).
+equal_genre(X,X) :- genre(X).
+
+%%%%% If an artist is nor a musician or a band, he is a singer
+
+singer(X) :- artist(X), not musician(X), not band(X).
+
+
+
+
+

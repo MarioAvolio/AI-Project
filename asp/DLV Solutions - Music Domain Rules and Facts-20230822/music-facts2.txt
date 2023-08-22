@@ -1,0 +1,55 @@
+% band and members
+
+singer(james_brown). 
+band(jbs).
+musician(maceo_parker).
+member_of(james_brown,jbs).
+member_of(fred_wesley,jbs).
+member_of(maceo_parker,jbs).
+member_of(bootsy_collins,jbs).
+member_of(bobby_bird,jbs).
+
+% singer
+
+singer(anderson_paak).
+musician(anderson_paak).
+
+% songs - albums
+music_work(the_grunt).
+music_work(escapeism).
+
+% artists of songs
+artist_of(jbs,the_grunt).
+artist_of(jbs,escapeism).
+
+artist_of(anderson_paak,milk_n_honey).
+artist_of(anderson_paak,tints).
+
+% genres
+% genre(black_music).
+% genre(funk).
+% genre(jazz_funk).
+% genre(raw_funk).
+% genre(rap).
+% genre(trap).
+
+% subgenres
+subgenre(funk,black_music).
+subgenre(rap,black_music).
+subgenre(raw_funk,funk).
+subgenre(jazz_funk,funk).
+subgenre(trap,rap).
+
+% music works and genre
+music_genre(the_grunt,raw_funk).
+music_genre(escapeism,jazz_funk).
+music_genre(milk_n_honey,trap).
+music_genre(tints,funk).
+music_genre(tints,rap).
+
+
+
+
+
+
+
