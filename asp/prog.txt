@@ -115,12 +115,24 @@ isAssociate(X,Y) | isNotAssociated(X,Y) :- l_subgenre(X, _), music_work(Y), X<Y.
 associated_l_sub(X) :- isAssociated(X, _). % safety
 :- l_subgenre(X, _), not associated_l_sub(X).
 
-music_word_associated_to_genres(Y) :- isAssociated(_, Y).
-artist_of_word_associated_to_genres(X,Y) | noArtist_of(X,Y) :- artist(X), music_work_associated(Y). % guess
+music_work_associated_to_genres(Y) :- isAssociated(_, Y).
+artist_of_work_associated_to_genres(X,Y) | noArtist_of(X,Y) :- artist(X), music_work_associated(Y). % guess
 
 %check
-:- artist(X), #count{Y,X: artist_of_word_associated_to_genres(X,Y)} < 1.
+:- artist(X), #count{Y,X: artist_of_work_associated_to_genres(X,Y)} < 1.
 
-% in the same way>
+% in the same way
+artist_with_wag(X) :- artist_of_work_associated_to_genres(X,_).
+:- artist(X), not artist_with_wag(X).
 
-:- artist(X)
+
+Add at least one rule using the datalog subset of ASP plus, if needed, true
+negation (but no disjunction, no NOT), which has the (abstract) form:
+o (p(X) and q(X)) if Z(X), where p and q are predicates of arbitrary
+ariety, X is an arbitrary list of variables, and Z(X) is any
+conjunction of literals that uses the variables of the list X.
+a(1..5).
+b(1..5).
+c(1..5).
+
+d(X) :- a(X), b(X), c(X).
