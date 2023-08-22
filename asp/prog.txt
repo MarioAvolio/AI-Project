@@ -125,6 +125,30 @@ artist_of_work_associated_to_genres(X,Y) | noArtist_of(X,Y) :- artist(X), music_
 artist_with_wag(X) :- artist_of_work_associated_to_genres(X,_).
 :- artist(X), not artist_with_wag(X).
 
+% Add at least one rule using the datalog subset of ASP plus, if needed, true
+% negation (but no disjunction, no NOT), which has the (abstract) form:
+% o (p(X) and q(X)) if Z(X), where p and q are predicates of arbitrary
+% ariety, X is an arbitrary list of variables, and Z(X) is any
+% conjunction of literals that uses the variables of the list X.
+artist(1..5).
+singer(X) :- artist(X).
+musician(x) :- artist(x).
+
+
+
+% Add a rule of choice using the datalog subset of ASP plus, if needed, true
+% negation (but no disjunction, no NOT):
+% o explain the intended interpretation of the rule in the program
+% using the comments;
+% o make sure it produces inferences that you can show and discuss
+% when presenting the exercise; to do so feel free to extend the KB as
+% needed (a few, e.g., 2-4, inferred facts are enough to comply to this
+% one).
+pianist(1..5). person(1..5). singer(1..5).
+musician(X) :- person(X), pianist(X).
+musician(X) :- person(X), singer(X).
+#show musician/1.
+
 
 
 
