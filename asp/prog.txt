@@ -108,3 +108,19 @@ l_subgenre(X,Y) :- m_subgenre(X,Z), m_subgenre(Z,Y).
 
 % Add artists and music works in such a way that each low-level subgenre is associated at least at one music work.
 artist(1..5).
+music_work(1..5).
+
+isAssociate(X,Y) | isNotAssociated(X,Y) :- l_subgenre(X, _), music_work(Y), X<Y. %X<Y to optimize
+%each low-level subgenre is associated at least at one music work.
+associated_l_sub(X) :- isAssociated(X, _). % safety
+:- l_subgenre(X, _), not associated_l_sub(X).
+
+music_word_associated_to_genres(Y) :- isAssociated(_, Y).
+artist_of_word_associated_to_genres(X,Y) | noArtist_of(X,Y) :- artist(X), music_work_associated(Y). % guess
+
+%check
+:- artist(X), #count{Y,X: artist_of_word_associated_to_genres(X,Y)} < 1.
+
+% in the same way>
+
+:- artist(X)
