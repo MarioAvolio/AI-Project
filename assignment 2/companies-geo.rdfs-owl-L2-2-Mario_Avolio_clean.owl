@@ -85,6 +85,22 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton -->
+
+    <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton">
+        <rdfs:label>Skeleton Type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasWarmBlooded -->
+
+    <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasWarmBlooded">
+        <rdfs:label>Blood Temperature</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo/administrativePartOf -->
 
     <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo/administrativePartOf">
@@ -237,6 +253,25 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Capital -->
+
+    <owl:Class rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Capital">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo/City"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/capitalOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Country"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/GeoEntity"/>
+    </owl:Class>
     
 
 
