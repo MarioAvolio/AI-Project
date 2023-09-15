@@ -185,3 +185,6 @@ To implement intuitively sound inferences in your ontology based on the specifie
    This inference ensures that only students can attend universities, and the object of the property is restricted to individuals of the class "University."
 
 By defining domain and range restrictions over properties, you ensure that your ontology is logically sound and can support inferences that align with your domain's semantics. These inferences help you reason about relationships and types within your ontology.
+
+
+The reasoner should classify "City1" as an instance of the class "Capital" because it satisfies the condition "City and (capitalOf some Country)." "City2" and "City3" will not be classified as instances of "Capital" unless they are specified as capitals of countries in your ontology.
