@@ -10,6 +10,7 @@
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:companies-geo="http://www.inside.disco.unimib.it/ds/test/companies-geo/"
+     xmlns:companies-geo1="http://www.inside.disco.unimib.it/ds/test/companies-geo#"
      xmlns:untitled-ontology-15="http://www.siti.disco.unimib.it/cmm/2013/untitled-ontology-15#">
     <owl:Ontology rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo"/>
     
@@ -388,6 +389,7 @@
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Mario">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Person"/>
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:hasStringName>Mario</companies-geo1:hasStringName>
     </owl:NamedIndividual>
     
 
@@ -428,6 +430,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:hasBirthplace rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Rome"/>
+        <companies-geo1:hasFriend rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#student2"/>
+        <companies-geo1:hasStringName>student1</companies-geo1:hasStringName>
     </owl:NamedIndividual>
     
 
@@ -436,6 +441,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student2">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:hasBirthplace rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Milan"/>
+        <companies-geo1:hasFriend rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1"/>
+        <companies-geo1:hasStringName>student2</companies-geo1:hasStringName>
     </owl:NamedIndividual>
     
 
