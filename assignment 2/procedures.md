@@ -122,40 +122,66 @@ Now, let's create two triples for each of the patterns:
 
 Remember to specify the appropriate individuals, classes, and data values when creating these triples in Protege. These triples represent relationships and information according to the specified patterns in your ontology.
 
-In the context of ontology modeling and RDF (Resource Description Framework), a triple consists of three components: subject, predicate, and object. These components are used to represent relationships and facts in a structured way. Here's how you can create a triple:
+To implement intuitively sound inferences in your ontology based on the specified patterns, you can define domain and range restrictions over object properties and datatype properties. Domain restrictions specify the class to which the subject of a property must belong, while range restrictions specify the class to which the object of a property must belong. Here are the domain and range restrictions for the specified properties and examples of inferences:
 
-1. **Subject:** The subject is the entity about which you want to make a statement or describe. It's typically an instance of a class or an individual.
+**Object Properties:**
 
-2. **Predicate:** The predicate represents the property or relationship between the subject and the object. It defines how the subject and object are related. Predicates are also known as properties in ontologies.
+1. `hasFriend` Object Property:
 
-3. **Object:** The object is the value or entity that is associated with the subject through the predicate. It can be another instance, a literal value (e.g., a string, number, or date), or a resource identifier (e.g., a URI).
+   - Domain: Person
+   - Range: Person
 
-Here's how you can create a triple in Protege:
+   With these domain and range restrictions, you ensure that the `hasFriend` property is used to relate individuals of the class "Person" to other individuals of the class "Person."
 
-1. **Open Your Ontology:**
-   - Launch Protege and open your ontology project.
+2. `hasBirthplace` Object Property:
 
-2. **Select the Individual or Class:**
-   - In Protege, go to the "Individuals" or "Classes" tab, depending on whether you want to create a triple involving an individual or a class.
+   - Domain: Person
+   - Range: Place
 
-3. **Create or Select the Subject:**
-   - To create a new subject (individual or class), right-click in the relevant tab and select "Add individual" or "Add class."
-   - To select an existing subject, locate it in the tab.
+   These restrictions specify that a person can have a birthplace, which is an instance of the class "Place."
 
-4. **Define the Predicate (Property):**
-   - In the same tab, locate the object property or datatype property you want to use as the predicate. If it doesn't exist, you may need to create it beforehand.
+3. `attendsUniversity` Object Property:
 
-5. **Define the Object:**
-   - For the object:
-     - If it's another individual, you can create it or select an existing one from the "Individuals" tab.
-     - If it's a literal value (e.g., a string or number), you can type it directly.
-     - If it's a resource identifier (e.g., a URI), you can enter the URI.
+   - Domain: Student
+   - Range: University
 
-6. **Create the Triple:**
-   - Once you have defined the subject, predicate, and object, you have created a triple.
-   - The triple is represented visually in the Protege interface, typically as a table or graph.
+   These restrictions ensure that only individuals of the class "Student" can attend a university, and the object of the property must be an individual of the class "University."
 
-7. **Save Your Ontology:**
-   - Make sure to save your ontology project to retain the changes, including the created triples.
+**Datatype Properties:**
 
-Repeat these steps for each triple you want to create in your ontology, specifying the appropriate subject, predicate (property), and object for each statement. Triples are fundamental building blocks in RDF-based ontologies and are used to represent knowledge and relationships within your ontology.
+1. `hasStringName` Datatype Property:
+
+   - Domain: Person
+   - Range: xsd:string
+
+   This restriction ensures that the object of the `hasStringName` property is a string literal.
+
+**Examples of Inferences:**
+
+1. **Friendship Inference:**
+
+   If you have the following triples in your ontology:
+
+   - `Person1` hasFriend `Person2`
+   - `Person2` hasFriend `Person3`
+
+   With the domain and range restrictions in place, you can infer that:
+   - `Person1` is of type `Person`
+   - `Person2` is of type `Person`
+   - `Person3` is of type `Person`
+
+   This inference is based on the fact that the `hasFriend` property is restricted to individuals of the class "Person."
+
+2. **Student-University Inference:**
+
+   If you have the following triple in your ontology:
+
+   - `Student1` attendsUniversity `University1`
+
+   With the domain and range restrictions in place, you can infer that:
+   - `Student1` is of type `Student`
+   - `University1` is of type `University`
+
+   This inference ensures that only students can attend universities, and the object of the property is restricted to individuals of the class "University."
+
+By defining domain and range restrictions over properties, you ensure that your ontology is logically sound and can support inferences that align with your domain's semantics. These inferences help you reason about relationships and types within your ontology.
