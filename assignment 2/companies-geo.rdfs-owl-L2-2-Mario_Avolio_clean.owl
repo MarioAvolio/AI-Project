@@ -430,6 +430,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:attendsUniversity rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#University1"/>
         <companies-geo1:hasBirthplace rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Rome"/>
         <companies-geo1:hasFriend rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#student2"/>
         <companies-geo1:hasStringName>student1</companies-geo1:hasStringName>
@@ -441,6 +442,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student2">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:attendsUniversity rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#University2"/>
         <companies-geo1:hasBirthplace rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Milan"/>
         <companies-geo1:hasFriend rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1"/>
         <companies-geo1:hasStringName>student2</companies-geo1:hasStringName>
