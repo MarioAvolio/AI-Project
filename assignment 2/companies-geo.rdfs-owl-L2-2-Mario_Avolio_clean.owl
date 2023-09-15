@@ -85,6 +85,16 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasSibling -->
+
+    <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasSibling">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Person"/>
+        <rdfs:range rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Person"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton -->
 
     <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton">
@@ -411,6 +421,39 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#City1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#City1">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/City"/>
+        <companies-geo:capitalOf rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Country1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#City2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#City2">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#City3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#City3">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Country1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Country1">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Country"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo -->
 
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo">
@@ -424,6 +467,7 @@
     <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Mario">
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Person"/>
         <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Student"/>
+        <companies-geo1:hasSibling rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo"/>
         <companies-geo1:hasStringName>Mario</companies-geo1:hasStringName>
     </owl:NamedIndividual>
     
