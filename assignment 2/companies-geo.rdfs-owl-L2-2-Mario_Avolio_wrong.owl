@@ -104,6 +104,14 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasUniqueOwner -->
+
+    <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasUniqueOwner">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton -->
 
     <owl:ObjectProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#hasVertebrateSkeleton">
@@ -307,6 +315,12 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Car -->
+
+    <owl:Class rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Car"/>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Person -->
 
     <owl:Class rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Person"/>
@@ -440,6 +454,25 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Car1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Car1">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Car"/>
+        <companies-geo1:hasUniqueOwner rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo"/>
+        <companies-geo1:hasUniqueOwner rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Mario"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#Car2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Car2">
+        <rdf:type rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Car"/>
+        <companies-geo1:hasUniqueOwner rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo"/>
+    </owl:NamedIndividual>
     
 
 
