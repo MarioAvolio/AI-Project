@@ -251,6 +251,14 @@
     
 
 
+    <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo#student_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student_id">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.inside.disco.unimib.it/ds/test/companies-geo/area -->
 
     <owl:DatatypeProperty rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo/area"/>
@@ -590,6 +598,8 @@
         <companies-geo1:hasBirthplace rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo/Milan"/>
         <companies-geo1:hasFriend rdf:resource="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1"/>
         <companies-geo1:hasStringName>student2</companies-geo1:hasStringName>
+        <companies-geo1:student_id rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200737</companies-geo1:student_id>
+        <companies-geo1:student_id rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">880995</companies-geo1:student_id>
     </owl:NamedIndividual>
     
 
@@ -792,6 +802,15 @@
             <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo/Country"/>
             <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo/Region"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Filippo"/>
+            <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#Mario"/>
+            <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student1"/>
+            <rdf:Description rdf:about="http://www.inside.disco.unimib.it/ds/test/companies-geo#student2"/>
+        </owl:distinctMembers>
     </rdf:Description>
     
 
