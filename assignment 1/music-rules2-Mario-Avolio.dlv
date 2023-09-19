@@ -174,12 +174,15 @@ person(X) :- singer(X).      % a singer is both an artist and a person
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 person(1..5). plays_guitar(1..5). plays_piano(1..5). plays_violin(1..5). plays_drums(1..5). plays_flute(1..5).
 
-multi_instrumentalist(X) :- person(X), plays_guitar(X), plays_piano(X), plays_violin(X), plays_drums(X), plays_flute(X), singer(X). 
+plays_instrument(X) :- plays_guitar(X), plays_piano(X), plays_violin(X), plays_drums(X), plays_flute(X).
+multi_instrumentalist(X) :- person(X), plays_instrument(X), singer(X). 
 
 % person who can play multiple musical instruments is commonly called a 'multi-instrumentalist' or simply a 'polymusician.' 
 % This term refers to someone who has proficiency and skill in playing multiple musical instruments. 
 % Multi-instrumentalists are often highly versatile and capable of playing a variety of instruments such as the guitar, piano, violin, drums, flute, etc.
-multi_instrumentalist(X)?
+
+% multi_instrumentalist(X)?
+% plays_instrument(X)?
 
 % ------------------------------------------
 
@@ -202,8 +205,40 @@ band(X) :- artist(X), not person(X).       % if an artist is not a single person
 % musician(X) v singer(X) :- person(X).
 musician(X) | singer(X) :- person(X).
 % ------------------------------------------
-
+% musician(X)?
+% singer(X)?
 % %Cautious reasoning: the answer must be inferred in every answer set
 % % Brave reasoning: the answer must be inferred in at least one answer set
 % % - dlv.bin tweety2.txt Tweety2-query.txt –brave
 
+% -FB, -brave	Brave query answering
+% -FC, -cautious	Cautious query answering
+
+
+% DLV (Disjunctive Logic Programming with Defaults) is a popular non-monotonic logic programming system used for knowledge representation and reasoning. In DLV, there are two main types of reasoning strategies: Brave Reasoning and Cautious Reasoning. Let's explore the differences between them with examples:
+
+% 1. **Brave Reasoning**:
+%    - Brave reasoning, also known as skeptical reasoning, produces the most optimistic conclusions based on the available information.
+%    - It assumes that all the defaults and rules are applicable unless there is explicit evidence to the contrary.
+%    - It derives conclusions that can be justified by the available knowledge but may not necessarily be true in all possible scenarios.
+%    - Brave reasoning aims to maximize the set of conclusions.
+   
+%    **Example**:
+%    Consider a DLV program with the following rules:
+%    ```
+%    p(X) :- not q(X).
+%    q(a).
+%    ```
+%    Using Brave reasoning, we can conclude that `p(a)` is true because there is no explicit evidence (no `not p(a)`) to contradict it.
+
+% 2. **Cautious Reasoning**:
+%    - Cautious reasoning, also known as skeptical reasoning, is more conservative and only derives conclusions that are guaranteed to be true regardless of unobservable facts.
+%    - It considers only those conclusions that can be justified not only by the available information but also in all possible scenarios.
+%    - Cautious reasoning aims to minimize the set of conclusions.
+   
+%    **Example**:
+%    Using the same DLV program as above, Cautious reasoning would not conclude anything because there is not enough evidence to guarantee that `p(a)` is true in all scenarios. Cautious reasoning would require explicit evidence like `p(a)` in the rules or facts.
+
+% In summary, Brave reasoning derives conclusions based on available evidence, while Cautious reasoning is more conservative and only derives conclusions that are guaranteed to be true in all possible scenarios, requiring stronger evidence. The choice between these reasoning strategies depends on the specific problem and the level of certainty required in the conclusions.
+
+% Keep in mind that DLV is a complex knowledge representation system, and the behavior of reasoning may vary depending on the specific DLV program and its rules. The examples provided here are simplified for illustrative purposes.

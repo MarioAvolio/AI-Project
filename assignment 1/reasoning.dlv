@@ -1,0 +1,15 @@
+% Some facts for the record_label rule
+contracted_with(bocelli, universal).
+contracted_with(james_brown, universal).
+contracted_with(anderson_paak, sony).
+contracted_with(jbs, sony).
+
+% Facts to support the "band(X) :- artist(X), not person(X)." rule
+artist(queen). % queen should be recognized directly as a band
+
+% Facts to make cautious and brave approach give different results
+musician(nek) | band(nek).
+contracted_with(queen, universal) | contracted_with(queen, sony).
+
+contracted_with(X, Y)?              % differences in brave / cautious
+% contracted_with(queen, Y)?          % differences in brave / cautious
