@@ -172,11 +172,17 @@ person(X) :- singer(X).      % a singer is both an artist and a person
 % needed (a few, e.g., 2-4, inferred facts are enough to comply to this
 % one).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pianist(1..5). person(1..5). singer(1..5).
-musician(X) :- person(X), pianist(X).
-musician(X) :- person(X), singer(X).
-musician(X)?
+person(1..5). plays_guitar(1..5). plays_piano(1..5). plays_violin(1..5). plays_drums(1..5). plays_flute(1..5).
+
+multi_instrumentalist(X) :- person(X), plays_guitar(X), plays_piano(X), plays_violin(X), plays_drums(X), plays_flute(X), singer(X). 
+
+% person who can play multiple musical instruments is commonly called a 'multi-instrumentalist' or simply a 'polymusician.' 
+% This term refers to someone who has proficiency and skill in playing multiple musical instruments. 
+% Multi-instrumentalists are often highly versatile and capable of playing a variety of instruments such as the guitar, piano, violin, drums, flute, etc.
+multi_instrumentalist(X)?
+
 % ------------------------------------------
+
 
 
 
