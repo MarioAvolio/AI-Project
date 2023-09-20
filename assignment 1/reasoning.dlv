@@ -9,3 +9,4 @@ contracted_with(queen, universal) v contracted_with(queen, sony).
 
 % contracted_with(X, Y)?              % differences in brave / cautious
 contracted_with(queen, Y)?          % differences in brave / cautious
+
