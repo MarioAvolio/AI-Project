@@ -1,80 +1,42 @@
-# Leveraging Retriever-Reader Architecture for Enhanced Review-Based Question-Answering
+# Retriever-Reader Architecture for Review-Based Question-Answering
 
-**Author**: Mario Avolio
-
-## Table of Contents
-1. [Key Aspects Explored](#key-aspects-explored)
-2. [Constructing a Question-Answering Pipeline Using the Retriever-Reader Architecture](#constructing-a-question-answering-pipeline-using-the-retriever-reader-architecture)
-3. [Assessment and Enhancement of the QA Pipeline](#assessment-and-enhancement-of-the-qa-pipeline)
-4. [Advancing with Generative QA: Retrieval-Augmented Generation (RAG)](#advancing-with-generative-qa-retrieval-augmented-generation-rag)
+## Overview
+This project focuses on building a Review-Based Question-Answering (QA) system using a Retriever-Reader architecture. We explore key aspects, strategies, and techniques to enhance QA performance.
 
 ## Key Aspects Explored
+- **SubjQA Dataset**: We work with the SubjQA dataset, designed for understanding subjectivity in customer reviews across various domains.
+- **QA System Building Blocks**: We discuss the two-stage process of QA, involving document retrieval and answer extraction.
+- **Span Classification**: We delve into the use of pre-trained language models and tokenization for extracting answers from text.
 
-### SubjQA Dataset, Span Classification, and Sliding Window Technique
-- SubjQA is an English Question-Answering dataset centered around customer reviews in six domains: TripAdvisor, Restaurants, Movies, Books, Electronics, and Grocery.
-- SubjQA focuses on understanding subjectivity in reviews, unlike previous QA datasets.
+## Construction of QA Pipeline
+Learn how to build an effective QA system:
 
-### Strategies for Extracting Answers from Text for Effective Question-Answering (QA) Systems
-- Different types of Question Answering (QA) systems.
-- The two-stage process of QA: retrieving relevant documents and extracting answers.
-- Key tasks in building a QA system and challenges in handling long passages.
+### Efficient Document Retrieval
+We employ Elasticsearch for efficient data storage and discuss the sparse retrieval technique using BM25.
 
-### Span Classification: Utilizing Pre-Trained Models
-- The importance of leveraging pre-trained language models for QA.
-- The focus on primary models: `roberta-base-squad2-distilled`, `xlm-roberta-large-squad2`, and `tinyroberta-squad2`.
-- Tokenization and the process of extracting answers from text.
+### Enhanced Answer Extraction
+We utilize the DistilRoBERTa-base model for answer extraction and tackle long contexts with the sliding window technique.
 
-## Constructing a Question-Answering Pipeline Using the Retriever-Reader Architecture
+## Assessment and Enhancement of QA Pipeline
+In this section, we assess and improve the QA pipeline:
 
-### Efficient Document Retrieval and Answer Extraction
-- Overview of the Retriever-Reader Architecture.
-- The roles of Retriever and Reader.
-- Using the Haystack library for QA system development.
+### Retriever Evaluation
+We compare Dense Passage Retrieval (DPR) with BM25 using recall measures for retriever performance.
 
-### Document Store Selection: Leveraging Elasticsearch for Efficient Data Storage
-- Introduction to the Elasticsearch Document Store.
-- ElasticsearchDocumentStore features and functionality.
+### Reader Enhancement
+We evaluate the reader's performance, explore domain adaptation, and discuss the impact on overall QA performance.
 
-### Sparse Retrieval: Utilizing BM25 for Effective Document Retrieval
-- Utilizing the BM25 algorithm for document retrieval.
-- BM25's sparse vector approach for efficient searches.
+### Overall QA Pipeline Evaluation
+A comprehensive assessment of the entire QA pipeline and a comparison with baseline models.
 
-### Reader Component: Enhancing Answer Extraction with DistilRoBERTa-base
-- Details about the Reader component.
-- Using the DistilRoBERTa-base model trained on SQuAD 2.0 for answer extraction.
-- The sliding window technique for handling long contexts.
+## Advancing with Generative QA: RAG
+Explore the latest in Generative QA with Retrieval-Augmented Generation (RAG):
 
-## Assessment and Enhancement of the QA Pipeline
+### RAG Overview
+Understand the concept of Abstractive QA, the challenges it poses, and how RAG enhances traditional QA systems.
 
-### Retriever Evaluation: Comparative Analysis of DPR and BM25 with Recall Measure
-- Evaluation of the Retriever component using the Recall metric.
-- Comparison of Dense Passage Retrieval (DPR) and BM25.
-
-### Reader Enhancement: Comparing Fine-Tune and Domain Adaptation Models with EM and F1-Score
-- Assessment of Reader performance.
-- Domain adaptation for enhancing performance.
-
-### Overall QA Pipeline Evaluation: Measuring Performance Impact of Retriever on Reader
-- Comprehensive evaluation of the entire QA pipeline.
-- Comparison of the QA pipeline with baseline models.
-
-## Advancing with Generative QA: Retrieval-Augmented Generation (RAG)
-
-### RAG Overview: Introducing Retrieval-Augmented Generation as an Abstractive QA Approach
-- Introduction to Abstractive or Generative QA.
-- Retrieval-Augmented Generation (RAG) as a modern advancement in QA.
-
-### Challenges of RAG: Limitations and Considerations
-- Challenges in traditional RAG models.
-- Use of PromptNode for overcoming limitations.
-- The potential of using advanced models for further improvements.
-
-### Solution: The PromptNode Approach with T5 and BM25
-- Explanation of the PromptNode approach.
-- Overcoming token size limitations.
-- Concluding remarks.
+### Challenges and Solutions
+We discuss the limitations of traditional RAG models and introduce the PromptNode approach to overcome these challenges.
 
 ## Conclusions
-- Summary of key findings and outcomes.
-
-> "Computer science is no more about computers than astronomy is about telescopes." - Edsger Dijkstra
+We summarize our findings and discuss the efficiency and performance of the QA pipeline, including our vision for future enhancements.
