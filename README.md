@@ -1,131 +1,80 @@
-# Question Answering (QA) System for Customer Reviews
+# Leveraging Retriever-Reader Architecture for Enhanced Review-Based Question-Answering
 
-## Overview
+**Author**: Mario Avolio
 
-This project aims to develop a Question Answering (QA) system tailored for customer reviews. The system leverages a combination of retrieval-based and generative approaches to extract relevant answers from a corpus of customer reviews. The project utilizes various components and technologies, including:
+## Table of Contents
+1. [Key Aspects Explored](#key-aspects-explored)
+2. [Constructing a Question-Answering Pipeline Using the Retriever-Reader Architecture](#constructing-a-question-answering-pipeline-using-the-retriever-reader-architecture)
+3. [Assessment and Enhancement of the QA Pipeline](#assessment-and-enhancement-of-the-qa-pipeline)
+4. [Advancing with Generative QA: Retrieval-Augmented Generation (RAG)](#advancing-with-generative-qa-retrieval-augmented-generation-rag)
 
-- Span classification for answer extraction.
-- Pre-trained language models fine-tuned on large-scale QA datasets.
-- The Retriever-Reader architecture for document retrieval and answer extraction.
-- The Haystack library for building the QA pipeline.
-- BM25 algorithm for efficient document retrieval.
-- Domain adaptation techniques to improve reader performance.
-- Retrieval-Augmented Generation (RAG) for abstractive QA.
+## Key Aspects Explored
 
-## Project Structure
+### SubjQA Dataset, Span Classification, and Sliding Window Technique
+- SubjQA is an English Question-Answering dataset centered around customer reviews in six domains: TripAdvisor, Restaurants, Movies, Books, Electronics, and Grocery.
+- SubjQA focuses on understanding subjectivity in reviews, unlike previous QA datasets.
 
-The project can be divided into several key components and phases:
+### Strategies for Extracting Answers from Text for Effective Question-Answering (QA) Systems
+- Different types of Question Answering (QA) systems.
+- The two-stage process of QA: retrieving relevant documents and extracting answers.
+- Key tasks in building a QA system and challenges in handling long passages.
 
-### 01. Problem Definition
+### Span Classification: Utilizing Pre-Trained Models
+- The importance of leveraging pre-trained language models for QA.
+- The focus on primary models: `roberta-base-squad2-distilled`, `xlm-roberta-large-squad2`, and `tinyroberta-squad2`.
+- Tokenization and the process of extracting answers from text.
 
-- Defining the problem statement and the need for a QA system for customer reviews.
-- Identifying the prevalent approach of framing the problem as span classification.
+## Constructing a Question-Answering Pipeline Using the Retriever-Reader Architecture
 
-### 02. Utilizing Pre-Trained Models
+### Efficient Document Retrieval and Answer Extraction
+- Overview of the Retriever-Reader Architecture.
+- The roles of Retriever and Reader.
+- Using the Haystack library for QA system development.
 
-- Leveraging pre-trained language models fine-tuned on large-scale QA datasets.
-- Selecting specific models for the project, such as `roberta-base-squad2-distilled`.
+### Document Store Selection: Leveraging Elasticsearch for Efficient Data Storage
+- Introduction to the Elasticsearch Document Store.
+- ElasticsearchDocumentStore features and functionality.
 
-### 03. Tokenization
+### Sparse Retrieval: Utilizing BM25 for Effective Document Retrieval
+- Utilizing the BM25 algorithm for document retrieval.
+- BM25's sparse vector approach for efficient searches.
 
-- Explaining the tokenization process, including model instantiation and QA head.
-- Describing the process of generating logits for answer spans.
-- Illustrating how answer spans are identified based on logits.
+### Reader Component: Enhancing Answer Extraction with DistilRoBERTa-base
+- Details about the Reader component.
+- Using the DistilRoBERTa-base model trained on SQuAD 2.0 for answer extraction.
+- The sliding window technique for handling long contexts.
 
-### 04. Strategies for Long Passage Handling
+## Assessment and Enhancement of the QA Pipeline
 
-- Addressing the challenge of context length in reading comprehension models.
-- Introducing the sliding window technique for handling long passages.
+### Retriever Evaluation: Comparative Analysis of DPR and BM25 with Recall Measure
+- Evaluation of the Retriever component using the Recall metric.
+- Comparison of Dense Passage Retrieval (DPR) and BM25.
 
-### 05. Efficient Document Retrieval and Answer Extraction
+### Reader Enhancement: Comparing Fine-Tune and Domain Adaptation Models with EM and F1-Score
+- Assessment of Reader performance.
+- Domain adaptation for enhancing performance.
 
-- Building a comprehensive QA pipeline using the Retriever-Reader architecture.
-- Highlighting the roles of the Retriever and Reader components.
-- Discussing the Haystack library's role in system development.
+### Overall QA Pipeline Evaluation: Measuring Performance Impact of Retriever on Reader
+- Comprehensive evaluation of the entire QA pipeline.
+- Comparison of the QA pipeline with baseline models.
 
-### 06. Retriever-Reader Architecture
+## Advancing with Generative QA: Retrieval-Augmented Generation (RAG)
 
-- Details about the Retriever component, including sparse and dense retrievers.
-- Insights into the Reader component and its role in answer extraction.
+### RAG Overview: Introducing Retrieval-Augmented Generation as an Abstractive QA Approach
+- Introduction to Abstractive or Generative QA.
+- Retrieval-Augmented Generation (RAG) as a modern advancement in QA.
 
-### 07. Haystack Library: the Document Store
+### Challenges of RAG: Limitations and Considerations
+- Challenges in traditional RAG models.
+- Use of PromptNode for overcoming limitations.
+- The potential of using advanced models for further improvements.
 
-- Exploring document store options and selecting ElasticsearchDocumentStore.
-- Describing the functionality of ElasticsearchDocumentStore.
-- Leveraging fields for filtering.
+### Solution: The PromptNode Approach with T5 and BM25
+- Explanation of the PromptNode approach.
+- Overcoming token size limitations.
+- Concluding remarks.
 
-### 08. Haystack Library: the Retriever
+## Conclusions
+- Summary of key findings and outcomes.
 
-- Utilizing the Sparse Retriever with BM25 algorithm.
-- Explaining BM25's sparse vector approach and scoring mechanism.
-
-### 09. Haystack Library: the Reader
-
-- Employing the Reader component for answer extraction.
-- Streamlining model loading and introducing the sliding window mechanism.
-- Specifics about the DistilRoBERTa-base model used in the Reader.
-
-### 10. Haystack Library: the Pipeline
-
-- Overview of the Pipeline abstraction in Haystack.
-- Utilizing the ExtractiveQAPipeline for answer extraction.
-- Applying filters for precision in queries.
-
-### 11. Assessment and Enhancement of the QA Pipeline
-
-- Evaluating the entire QA pipeline, including retriever and reader components.
-- Balancing between retriever and reader performance.
-- Introducing evaluation metrics and assessing retriever performance using Recall.
-
-### 12. Comprehensive Evaluation of the QA Pipeline
-
-- Examining the impact of retriever performance on the overall QA system.
-- Comparing the QA pipeline's performance with baseline models.
-- Discussing efficiency vs. performance trade-offs.
-
-### 13. Advancing with Generative QA: Retrieval-Augmented Generation (RAG)
-
-- Transitioning from span-based answer extraction to generative QA.
-- Introducing Retrieval-Augmented Generation (RAG) as a modern paradigm.
-- Details about the RAGenerator in Haystack.
-
-### 14. Enhancing Retrieval-Reader Architecture with RAG
-
-- Describing the RAG model variants: RAG-Sequence and RAG-Token.
-- Highlighting the role of the RAGenerator in Haystack.
-
-### 15. Challenges in RAG and the PromptNode Solution
-
-- Addressing challenges in generative QA, including contextual relevance.
-- Discussing the limitations of previous models and their dependencies.
-- Introducing the PromptNode solution for Retrieval Augmented Generation.
-
-### 16. Directing Focus towards Deprecation within the Haystack Framework
-
-- Informing about the deprecation of the RAGenerator in Haystack.
-- Providing guidance on how to adapt to this change and explore generative QA pipelines.
-
-### 17. Conclusions
-
-- Summarizing the project's findings and key takeaways.
-- Evaluating retriever and reader performance.
-- Comparing the QA pipeline with baseline models.
-- Highlighting efficiency vs. performance considerations.
-- Discussing the potential of Retrieval-Augmented Generation (RAG).
-
-## Usage
-
-To run the QA system and utilize its capabilities, follow the instructions provided in the documentation and codebase.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE.txt](LICENSE.txt) file for details.
-
-## Acknowledgments
-
-- Special thanks to the developers and contributors of the Haystack library for their valuable tools and resources.
-- Cite relevant papers and resources that contributed to the project.
-
----
-
-Feel free to modify and expand this README to suit your project's specific needs. Good luck with your Question Answering (QA) System for Customer Reviews!
+> "Computer science is no more about computers than astronomy is about telescopes." - Edsger Dijkstra
